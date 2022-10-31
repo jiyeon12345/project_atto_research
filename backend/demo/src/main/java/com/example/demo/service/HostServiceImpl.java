@@ -22,11 +22,14 @@ public class HostServiceImpl implements HostService{
     @Override
     public String save(Host host) {
         List<Host> lastHost = hostRepository.findTop1ByOrderByHostNoDesc();
-        log.info("last Host no : " +lastHost.get(0).getHostNo());
+        int countIndex = hostRepository.countHostNo();
+        log.info("last Host no : " +lastHost.get(0).getHostNo() +", count index :" +countIndex);
         if(lastHost.get(0).getHostNo() > 100){
             return "등록된 수가 100개를 넘었습니다.";
         }else if(this.checkHostNameDuplicate(host.getHostName()) == true || this.checkIpDuplicate(host.getIp()) == true) {
             return "중복검사를 다시 해 주시기 바랍니다.";
+        }else if(host.getHostName().isEmpty() == true || host.getHostName().isEmpty() == true){
+            return "값을 모두 입력해 주시기 바랍니다.";
         }
         else
             hostRepository.save(host);

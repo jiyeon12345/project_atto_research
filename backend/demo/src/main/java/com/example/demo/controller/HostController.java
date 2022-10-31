@@ -21,13 +21,13 @@ public class HostController {
 
     @PostMapping("/sign-up")
     @ResponseStatus(HttpStatus.CREATED)
-    public String inputHostInfo(@RequestBody HostDto hostDto){
+    public String registerHostInfo(@RequestBody HostDto hostDto){
         log.info("sign-up host name :" +hostDto.getHostName() +", ip :" + hostDto.getIp());
         Host host = HostMapStruct.instance.toEntity(hostDto);
         return hostService.save(host);
     }
 
-    @GetMapping("/checkHost-name/{hostName}")
+    @GetMapping("/checkHostName/{hostName}")
     @ResponseStatus(HttpStatus.OK)
     public Boolean isDuplicatedHostName(@PathVariable String hostName) {
         log.info("host name : " + hostName);
