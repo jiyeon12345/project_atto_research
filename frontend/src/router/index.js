@@ -1,14 +1,20 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import ProjectTest from "../views/ProjectTest.vue";
+import ProjectMain from "../views/ProjectMain.vue";
+import ProjectRegisterPage from "../views/ProjectRegisterPage.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "ProjectTest",
-    component: ProjectTest,
+    name: "ProjectMain",
+    component: ProjectMain,
+  },
+  {
+    path: "/register",
+    name: "ProjectRegisterPage",
+    component: ProjectRegisterPage,
   },
   {
     path: "/about",
