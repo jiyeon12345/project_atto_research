@@ -34,13 +34,16 @@ public class Host {
     @Column
     private Boolean alive;
 
+    @UpdateTimestamp
+    private Date lastAliveDate;
+
     @Builder
-    public Host(Long hostNo, String hostName, String ip, Date createdDate, Date lastModifiedDate, Boolean alive) {
+    public Host(Long hostNo, String hostName, String ip, Date createdDate, Date lastAliveDate, Boolean alive) {
         this.hostNo = hostNo;
         this.hostName = hostName;
         this.ip = ip;
         this.createdDate = createdDate;
-        this.lastModifiedDate = lastModifiedDate;
+        this.lastAliveDate = lastAliveDate;
         this.alive = alive;
     }
 }
