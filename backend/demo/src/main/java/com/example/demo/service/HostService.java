@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface HostService {
 
-    public String save(Host host);
+    public int save(Host host);
 
     public Boolean checkHostNameDuplicate(String hostName);
 

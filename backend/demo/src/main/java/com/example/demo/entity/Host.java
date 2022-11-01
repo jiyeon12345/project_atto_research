@@ -31,10 +31,10 @@ public class Host {
     @UpdateTimestamp
     private Date lastModifiedDate;
 
-    @Column
-    private Boolean alive;
+    @Column(columnDefinition = "boolean default false")
+    private Boolean alive = false;
 
-    @UpdateTimestamp
+    @Column
     private Date lastAliveDate;
 
     @Builder

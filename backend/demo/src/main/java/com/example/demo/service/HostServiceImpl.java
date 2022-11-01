@@ -20,19 +20,19 @@ public class HostServiceImpl implements HostService{
 
 
     @Override
-    public String save(Host host) {
+    public int save(Host host) {
         int countIndex = hostRepository.countHostNo();
         log.info("count index :" +countIndex);
-        if(countIndex > 100){
-            return "등록된 수가 100개를 넘었습니다.";
+        if(countIndex >= 100){
+            return 1;
         }else if(this.checkHostNameDuplicate(host.getHostName()) == true || this.checkIpDuplicate(host.getIp()) == true) {
-            return "중복검사를 다시 해 주시기 바랍니다.";
+            return 2;
         }else if(host.getHostName().isEmpty() == true || host.getHostName().isEmpty() == true){
-            return "값을 모두 입력해 주시기 바랍니다.";
+            return 3;
         }
         else
             hostRepository.save(host);
-        return "등록을 완료했습니다.";
+        return 0;
     }
 
     @Override
@@ -53,11 +53,11 @@ public class HostServiceImpl implements HostService{
                 .hostName(hostData.getHostName())
                 .ip(host.getIp())
                 .createdDate(hostData.getCreatedDate())
-                .lastModifiedDate(hostData.getLastModifiedDate())
                 .alive(hostData.getAlive())
+                .lastAliveDate(hostData.getLastAliveDate())
                 .build();
         try{
-            hostRepository.save(host);
+            hostRepository.save(inputData);
         }catch (DataAccessException e){
             return "중복검사를 다시 해 주시기 바랍니다.";
         }

@@ -21,7 +21,7 @@ public class HostController {
 
     @PostMapping("/sign-up")
     @ResponseStatus(HttpStatus.CREATED)
-    public String registerHostInfo(@RequestBody HostDto hostDto){
+    public int registerHostInfo(@RequestBody HostDto hostDto){
         log.info("sign-up host name :" +hostDto.getHostName() +", ip :" + hostDto.getIp());
         Host host = HostMapStruct.instance.toEntity(hostDto);
         return hostService.save(host);
