@@ -14,7 +14,7 @@ export default {
       this.$router.push({ name: "ProjectRegisterPage" });
     },
     checkList() {
-      this.$router.push({ name: "ProjectListPage" });
+      this.$router.push({ name: "ProjectCheckAlivePage" });
     },
   },
 };

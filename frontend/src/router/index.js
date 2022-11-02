@@ -2,6 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import ProjectMain from "../views/ProjectMain.vue";
 import ProjectRegisterPage from "../views/ProjectRegisterPage.vue";
+import ProjectCheckAlivePage from "../views/ProjectCheckAlivePage.vue";
+import ProjectReadServerPage from "../views/ProjectReadServerPage.vue";
 
 Vue.use(VueRouter);
 
@@ -15,6 +17,16 @@ const routes = [
     path: "/register",
     name: "ProjectRegisterPage",
     component: ProjectRegisterPage,
+  },
+  {
+    path: "/check/alive",
+    name: "ProjectCheckAlivePage",
+    component: ProjectCheckAlivePage,
+  },
+  {
+    path: "/read/alive/:hostName",
+    name: "ProjectReadServerPage",
+    component: ProjectReadServerPage,
   },
   {
     path: "/about",
