@@ -16,4 +16,6 @@ public interface HostService {
     public String modify(Host host);
 
     public void delete(Long hostNo);
+
+    void modifyAlive(String hostName);
 }

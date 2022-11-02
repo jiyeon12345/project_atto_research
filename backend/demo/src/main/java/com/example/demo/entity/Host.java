@@ -38,12 +38,13 @@ public class Host {
     private Date lastAliveDate;
 
     @Builder
-    public Host(Long hostNo, String hostName, String ip, Date createdDate, Date lastAliveDate, Boolean alive) {
+    public Host(Long hostNo, String hostName, String ip, Date createdDate, Date lastAliveDate, Date lastModifiedDate, Boolean alive) {
         this.hostNo = hostNo;
         this.hostName = hostName;
         this.ip = ip;
         this.createdDate = createdDate;
         this.lastAliveDate = lastAliveDate;
+        this.lastModifiedDate = lastModifiedDate;
         this.alive = alive;
     }
 }

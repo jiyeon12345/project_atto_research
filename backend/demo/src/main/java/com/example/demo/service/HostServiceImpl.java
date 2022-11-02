@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -67,6 +68,22 @@ public class HostServiceImpl implements HostService{
     @Override
     public void delete(Long hostNo) {
         hostRepository.deleteById(hostNo);
+    }
+
+    @Override
+    public void modifyAlive(String hostName) {
+        Host host = hostRepository.getByHostName(hostName);
+        Host hostData = Host.builder()
+                .hostNo(host.getHostNo())
+                .hostName(host.getHostName())
+                .ip(host.getIp())
+                .createdDate(host.getCreatedDate())
+                .lastModifiedDate(host.getLastModifiedDate())
+                .alive(host.getAlive() == false? true : false)
+                .lastAliveDate(host.getAlive() == true? new Date() : host.getLastAliveDate())
+                .build();
+
+        hostRepository.save(hostData);
     }
 
 
