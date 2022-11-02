@@ -18,4 +18,8 @@ public interface HostService {
     public void delete(Long hostNo);
 
     void modifyAlive(String hostName);
+
+    Host checkServerVer1(String hostName);
+
+    Host checkServerVer2(String hostName);
 }

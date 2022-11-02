@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import java.net.InetAddress;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -83,7 +84,42 @@ public class HostServiceImpl implements HostService{
                 .lastAliveDate(host.getAlive() == true? new Date() : host.getLastAliveDate())
                 .build();
 
+        log.info("alive : " + host.getAlive() +"-> " +hostData.getAlive());
+
         hostRepository.save(hostData);
+    }
+
+    @Override
+    public Host checkServerVer1(String hostName) {
+        Host host = hostRepository.getByHostName(hostName);
+        boolean isAlive = false;
+        try {
+            InetAddress pingCheck = InetAddress.getByName(host.getIp());
+
+            isAlive = pingCheck.isReachable(1000);
+            log.info("alive : " + isAlive);
+
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        Host hostData = Host.builder()
+                .hostNo(host.getHostNo())
+                .hostName(host.getHostName())
+                .ip(host.getIp())
+                .createdDate(host.getCreatedDate())
+                .lastModifiedDate(host.getLastModifiedDate())
+                .alive(isAlive)
+                .lastAliveDate(host.getAlive() == true? new Date() : host.getLastAliveDate())
+                .build();
+
+        hostRepository.save(hostData);
+        return hostData;
+    }
+
+    @Override
+    public Host checkServerVer2(String hostName) {
+        return hostRepository.getByHostName(hostName);
     }
 
 

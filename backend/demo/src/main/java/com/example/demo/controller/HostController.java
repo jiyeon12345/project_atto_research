@@ -58,8 +58,20 @@ public class HostController {
 
     @PutMapping("/requestServer/{hostName}")
     public void reqServer (@PathVariable String hostName){
-        log.info("start server : " + hostName);
+        log.info("request server : " + hostName);
         hostService.modifyAlive(hostName);
+    }
+
+    @GetMapping("/checkServer1/{hostName}")
+    public Host checkServerVer1 (@PathVariable String hostName) {
+        log.info("check server ver1: " +hostName);
+        return hostService.checkServerVer1(hostName);
+    }
+
+    @GetMapping("/checkServer2/{hostName}")
+    public Host checkServerVer2 (@PathVariable String hostName) {
+        log.info("check server ver2: " +hostName);
+        return hostService.checkServerVer2(hostName);
     }
 
 }
