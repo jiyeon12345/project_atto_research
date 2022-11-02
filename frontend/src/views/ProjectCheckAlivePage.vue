@@ -20,7 +20,7 @@ export default {
       axios
         .get(`http://localhost:7777/project/checkServer1/${hostName}`)
         .then(() => {
-          this.$router.push({ name: "ProjectReadServerPage" });
+          this.$router.push({ name: "ProjectReadServerPage1" });
         })
         .catch(() => {
           alert("유효한 이름을 적어주시기 바랍니다.");
@@ -31,8 +31,12 @@ export default {
 
       axios
         .get(`http://localhost:7777/project/checkServer2/${hostName}`)
-        .then(() => {
-          this.$router.push({ name: "ProjectReadServerPage" });
+        .then((res) => {
+          let readServer2 = res.data;
+          this.$router.push({
+            name: "ProjectReadServerPage2",
+            params: { readServer2, hostName },
+          });
         })
         .catch(() => {
           alert("유효한 이름을 적어주시기 바랍니다.");

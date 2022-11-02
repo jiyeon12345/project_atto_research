@@ -11,6 +11,7 @@
     />
     <v-btn @click="submitData1">조회하기(버전1)</v-btn>
     <v-btn @click="submitData2">조회하기(버전2)</v-btn>
+    <v-btn @click="goToMainPage">메인으로</v-btn>
   </div>
 </template>
 <script>
@@ -28,6 +29,9 @@ export default {
     submitData2() {
       this.$emit("submitData2", this.hostName);
     },
+    goToMainPage() {
+      this.$router.push({ name: "ProjectMain" });
+    },
   },
 };
 </script>
@@ -35,5 +39,8 @@ export default {
 .checkForm {
   display: grid;
   place-items: center;
+}
+button {
+  margin: 3px;
 }
 </style>

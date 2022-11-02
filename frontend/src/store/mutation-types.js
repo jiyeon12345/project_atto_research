@@ -1,1 +1,1 @@
-export default {};
+export const FETCH_READ_SERVER2 = "FETCH_READ_SERVER2";
