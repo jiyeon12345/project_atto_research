@@ -56,7 +56,7 @@ public class HostController {
         hostService.delete(hostNo);
     }
 
-    @PutMapping("/reqServer/{hostName}")
+    @PutMapping("/requestServer/{hostName}")
     public void reqServer (@PathVariable String hostName){
         log.info("start server : " + hostName);
         hostService.modifyAlive(hostName);
