@@ -15,7 +15,8 @@
       <span><v-btn @click="isDuplicatedIp">중복검사</v-btn></span>
     </div>
     <div>
-      <p>alive 상태 : {{ readServer2.alive }}</p>
+      <p v-if="readServer2.alive == true">alive 상태 : on</p>
+      <p v-else>alive 상태 : off</p>
       <p>alive 실행 일자 : {{ readServer2.lastAliveDate }}</p>
     </div>
     <v-btn @click="modifyData">수정하기</v-btn>

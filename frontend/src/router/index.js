@@ -5,6 +5,7 @@ import ProjectRegisterPage from "../views/ProjectRegisterPage.vue";
 import ProjectCheckAlivePage from "../views/ProjectCheckAlivePage.vue";
 import ProjectReadServerPage2 from "../views/ProjectReadServerPage2.vue";
 import ProjectModifyPage from "../views/ProjectModifyPage.vue";
+import ProjectListPage from "../views/ProjectListPage.vue";
 
 Vue.use(VueRouter);
 
@@ -44,6 +45,12 @@ const routes = [
       default: true,
     },
   },
+  {
+    path: "/list",
+    name: "ProjectListPage",
+    component: ProjectListPage,
+  },
+
   {
     path: "/about",
     name: "about",

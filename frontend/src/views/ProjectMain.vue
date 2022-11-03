@@ -3,7 +3,9 @@
     <h1>메인 페이지</h1>
     <v-btn @click="register"> 회원 등록 </v-btn>
     <br />
-    <v-btn @click="checkList"> 회원 조회 </v-btn>
+    <v-btn @click="searchName"> 회원 조회 </v-btn>
+    <br />
+    <v-btn @click="totalList"> 전체 조회 </v-btn>
   </div>
 </template>
 <script>
@@ -13,8 +15,11 @@ export default {
     register() {
       this.$router.push({ name: "ProjectRegisterPage" });
     },
-    checkList() {
+    searchName() {
       this.$router.push({ name: "ProjectCheckAlivePage" });
+    },
+    totalList() {
+      this.$router.push({ name: "ProjectListPage" });
     },
   },
 };
