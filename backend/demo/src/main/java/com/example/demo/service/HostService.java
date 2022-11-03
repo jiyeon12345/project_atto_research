@@ -4,6 +4,8 @@ import com.example.demo.dto.HostDto;
 import com.example.demo.entity.Host;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface HostService {
 
@@ -22,4 +24,9 @@ public interface HostService {
     Host checkServerVer1(String hostName);
 
     Host checkServerVer2(String hostName);
+
+    List<Boolean> list1();
+    List<Host> list2();
+
+
 }

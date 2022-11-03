@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
 @RestController
 @RequestMapping("/project")
@@ -75,6 +77,19 @@ public class HostController {
     public Host checkServerVer2 (@PathVariable String hostName) {
         log.info("check server ver2: " +hostName);
         return hostService.checkServerVer2(hostName);
+    }
+
+    @GetMapping("/alive/list")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Boolean> totalListVer1 () {
+        log.info("total list 1" );
+        return hostService.list1();
+    }
+    @GetMapping("/server/list")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Host> totalListVer2 () {
+        log.info("total list" );
+        return hostService.list2();
     }
 
 }

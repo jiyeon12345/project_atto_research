@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.InetAddress;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -93,24 +94,14 @@ public class HostServiceImpl implements HostService{
     @Override
     public Host checkServerVer1(String hostName) {
         Host host = hostRepository.getByHostName(hostName).orElseGet(null);
-        boolean isAlive = false;
-        try {
-            InetAddress pingCheck = InetAddress.getByName(host.getIp());
 
-            isAlive = pingCheck.isReachable(1000);
-            log.info("alive : " + isAlive);
-
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-        }
         Host hostData = Host.builder()
                 .hostNo(host.getHostNo())
                 .hostName(host.getHostName())
                 .ip(host.getIp())
                 .createdDate(host.getCreatedDate())
                 .lastModifiedDate(host.getLastModifiedDate())
-                .alive(isAlive)
+                .alive(isAliveIp(host.getIp()))
                 .lastAliveDate(host.getAlive() == true? new Date() : host.getLastAliveDate())
                 .build();
 
@@ -118,11 +109,39 @@ public class HostServiceImpl implements HostService{
         return hostData;
     }
 
+    public Boolean isAliveIp(String ip) {
+        boolean isAlive = false;
+        try {
+            InetAddress pingCheck = InetAddress.getByName(ip);
+
+            isAlive = pingCheck.isReachable(5);
+            log.info("alive : " + isAlive);
+
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        return  isAlive;
+    }
+
     @Override
     public Host checkServerVer2(String hostName) {
         return hostRepository.getByHostName(hostName).orElseGet(null);
     }
 
+    @Override
+    public List<Boolean> list1() {
+        List<Boolean> aliveList = new ArrayList<>();
+        for(Host list : list2()){
+            aliveList.add(isAliveIp(list.getIp()));
+        }
+        return aliveList;
+    }
+
+    @Override
+    public List<Host> list2() {
+        return hostRepository.findAll();
+    }
 
 
 }
