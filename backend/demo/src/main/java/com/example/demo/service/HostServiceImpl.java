@@ -81,7 +81,7 @@ public class HostServiceImpl implements HostService{
                 .createdDate(host.getCreatedDate())
                 .lastModifiedDate(host.getLastModifiedDate())
                 .alive(host.getAlive() == false? true : false)
-                .lastAliveDate(host.getAlive() == true? new Date() : host.getLastAliveDate())
+                .lastAliveDate(host.getAlive() == false? new Date() : host.getLastAliveDate())
                 .build();
 
         log.info("alive : " + host.getAlive() +"-> " +hostData.getAlive());
