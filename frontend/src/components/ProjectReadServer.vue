@@ -3,7 +3,8 @@
     <div>
       <p>이름 : {{ readServer2.hostName }}</p>
       <p>ip : {{ readServer2.ip }}</p>
-      <p>alive 상태 : {{ readServer2.alive }}</p>
+      <p v-if="readServer2.alive == true">alive 상태 : on</p>
+      <p v-else>alive 상태 : off</p>
       <p>alive 실행 일자 : {{ readServer2.lastAliveDate }}</p>
       <!-- <p>생성 일자 : {{ readServer2.createdDate }}</p>
       <p>수정 일자 : {{ readServer2.lastModifiedDate }}</p> -->
