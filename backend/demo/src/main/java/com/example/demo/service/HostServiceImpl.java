@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.util.Date;
 import java.util.List;
@@ -73,7 +74,7 @@ public class HostServiceImpl implements HostService{
 
     @Override
     public void modifyAlive(String hostName) {
-        Host host = hostRepository.getByHostName(hostName);
+        Host host = hostRepository.getByHostName(hostName).orElseGet(null);
         Host hostData = Host.builder()
                 .hostNo(host.getHostNo())
                 .hostName(host.getHostName())
@@ -91,7 +92,7 @@ public class HostServiceImpl implements HostService{
 
     @Override
     public Host checkServerVer1(String hostName) {
-        Host host = hostRepository.getByHostName(hostName);
+        Host host = hostRepository.getByHostName(hostName).orElseGet(null);
         boolean isAlive = false;
         try {
             InetAddress pingCheck = InetAddress.getByName(host.getIp());
@@ -119,8 +120,9 @@ public class HostServiceImpl implements HostService{
 
     @Override
     public Host checkServerVer2(String hostName) {
-        return hostRepository.getByHostName(hostName);
+        return hostRepository.getByHostName(hostName).orElseGet(null);
     }
+
 
 
 }

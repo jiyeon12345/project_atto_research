@@ -20,7 +20,7 @@ public interface HostRepository extends JpaRepository<Host,Long> {
     @Query("select count(h) from Host h")
     int countHostNo();
 
-    Host getByHostName(String hostName);
+    Optional<Host> getByHostName(String hostName);
 
     Host getByHostNo(Long hostNo);
 }
