@@ -21,4 +21,6 @@ public interface HostRepository extends JpaRepository<Host,Long> {
     int countHostNo();
 
     Host getByHostName(String hostName);
+
+    Host getByHostNo(Long hostNo);
 }

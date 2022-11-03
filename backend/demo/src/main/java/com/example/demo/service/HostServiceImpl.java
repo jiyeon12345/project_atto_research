@@ -48,11 +48,11 @@ public class HostServiceImpl implements HostService{
     }
 
     @Override
-    public String modify(Host host) {
-        Host hostData = hostRepository.getById(host.getHostNo());
+    public int modify(Host host) {
+        Host hostData = hostRepository.getByHostNo(host.getHostNo());
         Host inputData = Host.builder()
                 .hostNo(host.getHostNo())
-                .hostName(hostData.getHostName())
+                .hostName(host.getHostName())
                 .ip(host.getIp())
                 .createdDate(hostData.getCreatedDate())
                 .alive(hostData.getAlive())
@@ -61,9 +61,9 @@ public class HostServiceImpl implements HostService{
         try{
             hostRepository.save(inputData);
         }catch (DataAccessException e){
-            return "중복검사를 다시 해 주시기 바랍니다.";
+            return 1;
         }
-        return "수정을 완료했습니다.";
+        return 0;
     }
 
     @Override

@@ -43,7 +43,7 @@ public class HostController {
 
     @PutMapping("/modify")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public String modifyHostInfo(@RequestBody HostDto hostDto){
+    public int modifyHostInfo(@RequestBody HostDto hostDto){
         log.info("modify detail no :" +hostDto.getHostNo()+", name :" +hostDto.getHostName()+", ip :" +hostDto.getIp());
         Host host = HostMapStruct.instance.toEntity(hostDto);
         return hostService.modify(host);
@@ -57,18 +57,21 @@ public class HostController {
     }
 
     @PutMapping("/requestServer/{hostName}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public void reqServer (@PathVariable String hostName){
         log.info("request server : " + hostName);
         hostService.modifyAlive(hostName);
     }
 
     @GetMapping("/checkServer1/{hostName}")
+    @ResponseStatus(HttpStatus.OK)
     public Host checkServerVer1 (@PathVariable String hostName) {
         log.info("check server ver1: " +hostName);
         return hostService.checkServerVer1(hostName);
     }
 
     @GetMapping("/checkServer2/{hostName}")
+    @ResponseStatus(HttpStatus.OK)
     public Host checkServerVer2 (@PathVariable String hostName) {
         log.info("check server ver2: " +hostName);
         return hostService.checkServerVer2(hostName);

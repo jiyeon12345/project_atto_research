@@ -13,7 +13,7 @@ public interface HostService {
 
     public Boolean checkIpDuplicate(String ip);
 
-    public String modify(Host host);
+    public int modify(Host host);
 
     public void delete(Long hostNo);
 
