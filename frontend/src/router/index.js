@@ -26,7 +26,12 @@ const routes = [
   {
     path: "/read/alive2/:hostName",
     name: "ProjectReadServerPage2",
-    component: ProjectReadServerPage2,
+    components: {
+      default: ProjectReadServerPage2,
+    },
+    props: {
+      default: true,
+    },
   },
   {
     path: "/about",

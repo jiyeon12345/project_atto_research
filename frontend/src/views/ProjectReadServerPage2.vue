@@ -1,42 +1,34 @@
 <template>
   <div>
-    <p>여기는</p>
+    <p>alive 상태 확인</p>
     <project-read-server :readServer2="readServer2" />
   </div>
 </template>
+
 <script>
 import ProjectReadServer from "@/components/ProjectReadServer.vue";
-//import { mapActions, mapState } from "vuex";
-import axios from "axios";
+import { mapActions, mapState } from "vuex";
 
 export default {
   name: "ProjectReadServerPage2",
   props: {
-    readServer2: {
-      type: Object,
-      required: true,
-    },
     hostName: {
       type: String,
       required: true,
     },
   },
   components: { ProjectReadServer },
-
-  async mounted() {
-    await this.getServerData();
+  computed: {
+    ...mapState(["readServer2"]),
+  },
+  created() {
+    this.fetchReadServer2(this.hostName).catch(() => {
+      alert("게시물 요청 실패!");
+      this.$router.push();
+    });
   },
   methods: {
-    getServerData() {
-      axios
-        .get(
-          `http://localhost:7777/project/checkServer2/${this.readServer2.hostName}`
-        )
-        .then(() => {})
-        .catch(() => {
-          alert("유효한 이름을 적어주시기 바랍니다.");
-        });
-    },
+    ...mapActions(["fetchReadServer2"]),
   },
 };
 </script>

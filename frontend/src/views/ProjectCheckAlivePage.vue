@@ -28,19 +28,10 @@ export default {
     },
     submitData2(payload) {
       let hostName = payload;
-
-      axios
-        .get(`http://localhost:7777/project/checkServer2/${hostName}`)
-        .then((res) => {
-          let readServer2 = res.data;
-          this.$router.push({
-            name: "ProjectReadServerPage2",
-            params: { readServer2, hostName },
-          });
-        })
-        .catch(() => {
-          alert("유효한 이름을 적어주시기 바랍니다.");
-        });
+      this.$router.push({
+        name: "ProjectReadServerPage2",
+        params: { hostName },
+      });
     },
   },
 };
