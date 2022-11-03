@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="readPage">
     <p>alive 상태 확인</p>
     <project-read-server :readServer2="readServer2" />
   </div>
@@ -32,4 +32,8 @@ export default {
   },
 };
 </script>
-<style scoped></style>
+<style scoped>
+.readPage {
+  margin: 3%;
+}
+</style>

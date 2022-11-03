@@ -40,10 +40,7 @@ export default {
           .put(`http://localhost:7777/project/requestServer/${hostName}`)
           .then(() => {
             alert("alive 상태를 변경했습니다.");
-            this.$router.push({
-              name: "ProjectReadServerPage2",
-              params: { readServer2: this.readServer2, hostName },
-            });
+            this.$router.go();
           })
           .catch(() => {
             alert("유효한 이름을 적어주시기 바랍니다.");
@@ -74,4 +71,4 @@ export default {
   },
 };
 </script>
-<style lang=""></style>
+<style scoped></style>
