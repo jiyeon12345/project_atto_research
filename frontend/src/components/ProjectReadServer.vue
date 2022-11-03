@@ -58,15 +58,18 @@ export default {
     },
     deleteData() {
       let hostNo = this.readServer2.hostNo;
-      axios
-        .delete(`http://localhost:7777/project/${hostNo}`)
-        .then(() => {
-          alert("삭제가 완료되었습니다.");
-          this.$router.push({ name: "ProjectMain" });
-        })
-        .catch(() => {
-          alert("유효한 이름을 적어주시기 바랍니다.");
-        });
+      var result = confirm("해당 값을 삭제하시겠습니까?");
+      if (result) {
+        axios
+          .delete(`http://localhost:7777/project/${hostNo}`)
+          .then(() => {
+            alert("삭제가 완료되었습니다.");
+            this.$router.push({ name: "ProjectMain" });
+          })
+          .catch(() => {
+            alert("삭제가 실패했습니다.");
+          });
+      }
     },
   },
 };
