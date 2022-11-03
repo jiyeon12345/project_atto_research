@@ -49,7 +49,7 @@ export default {
     },
     modifyData() {
       this.$router.push({
-        name: "ProjectReadServerPage2",
+        name: "ProjectModifyPage",
         params: {
           readServer2: this.readServer2,
           hostName: this.readServer2.hostName,

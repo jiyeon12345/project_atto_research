@@ -4,6 +4,7 @@ import ProjectMain from "../views/ProjectMain.vue";
 import ProjectRegisterPage from "../views/ProjectRegisterPage.vue";
 import ProjectCheckAlivePage from "../views/ProjectCheckAlivePage.vue";
 import ProjectReadServerPage2 from "../views/ProjectReadServerPage2.vue";
+import ProjectModifyPage from "../views/ProjectModifyPage.vue";
 
 Vue.use(VueRouter);
 
@@ -28,6 +29,16 @@ const routes = [
     name: "ProjectReadServerPage2",
     components: {
       default: ProjectReadServerPage2,
+    },
+    props: {
+      default: true,
+    },
+  },
+  {
+    path: "/modify/:hostName",
+    name: "ProjectModifyPage",
+    components: {
+      default: ProjectModifyPage,
     },
     props: {
       default: true,

@@ -1,6 +1,6 @@
 <template>
-  <div class="readPage">
-    <p>alive 상태 확인</p>
+  <div>
+    <h2>alive 상태 확인</h2>
     <project-read-server :readServer2="readServer2" />
   </div>
 </template>
