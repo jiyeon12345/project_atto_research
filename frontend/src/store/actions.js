@@ -7,6 +7,7 @@ export default {
       .get(`http://localhost:7777/project/checkServer2/${hostName}`)
       .then((res) => {
         commit(FETCH_READ_SERVER2, res.data);
-      });
+      })
+      .catch(() => {});
   },
 };
